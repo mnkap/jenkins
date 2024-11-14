@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     // Install pytest using pip
-                    sh 'pip install pytest'
+                    sh 'pip3 install pytest'
                 }
             }
         }
