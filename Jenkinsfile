@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Install pytest using pip
-                    sh 'pipx install -r --user requirements.txt'
+                    sh 'pip3 install pytest --break-system-packages'
                 }
             }
         }
