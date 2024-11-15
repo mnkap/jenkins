@@ -4,6 +4,7 @@ pipeline {
         registry = "mnkap/python-jenkins" //To push an image to Docker Hub, you must first name your local image using your Docker Hub username and the repository name that you created through Docker Hub on the web.
         registryCredential = 'DOCKERHUB'
         githubCredential = 'GITHUB'
+        VIRTUAL_ENV = '/var/lib/jenkins/pytest_env'
     }
     agent any
     stages {
@@ -15,18 +16,22 @@ pipeline {
                 url: 'https://github.com/mnkap/jenkins.git'
                 }
         }
-
-        stage('Install Dependencies') {
+   
+        stage('Set up Virtual Environment') {
             steps {
                 script {
-                    // Install pytest using pip
-                    sh 'pip3 install pytest --break-system-packages'
+                    sh '''
+                        python3 -m venv $VIRTUAL_ENV
+                        source $VIRTUAL_ENV/bin/activate
+                        pip install pytest
+                    '''
                 }
             }
         }
-        
+   
         stage ('Test'){
                 steps {
+                source $VIRTUAL_ENV/bin/activate
                 sh "pytest testRoutes.py"
                 }
         }
