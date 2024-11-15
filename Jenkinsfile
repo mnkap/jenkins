@@ -2,8 +2,8 @@
 pipeline {
     environment {
         registry = "mnkap/python-jenkins" //To push an image to Docker Hub, you must first name your local image using your Docker Hub username and the repository name that you created through Docker Hub on the web.
-        registryCredential = 'DOCKERHUB'
-        githubCredential = 'GITHUB'
+        registryCredential = 'gbt1'
+        githubCredential = 'mnkap'
         VIRTUAL_ENV = '/var/lib/jenkins/pytest_env'
     }
     agent any
