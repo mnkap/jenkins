@@ -31,9 +31,13 @@ pipeline {
    
         stage ('Test'){
                 steps {
-                source $VIRTUAL_ENV/bin/activate
-                sh "pytest testRoutes.py"
-                }
+                    script {
+                    // Activate the virtual environment and run pytest
+                    sh '''
+                        . $VIRTUAL_ENV/bin/activate  # Use dot (.) again
+                        pytest testRoutes.py
+                    '''
+                    }
         }
         
         stage ('Clean Up'){
