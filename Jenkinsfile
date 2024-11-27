@@ -3,6 +3,7 @@ pipeline {
     environment {
         registry = "mnkap/python-jenkins" //To push an image to Docker Hub, you must first name your local image using your Docker Hub username and the repository name that you created through Docker Hub on the web.
         registryCredential = 'gbt1'
+        tag = 'latest'
         githubCredential = 'mnkap'
         VIRTUAL_ENV = '/var/lib/jenkins/pytest_env'
         dockerfile = 'Dockerfile'
@@ -59,7 +60,7 @@ pipeline {
         stage('Push To DockerHub') {
             steps {
                 
-                 sh "sudo docker push $registryCredential:$registry"
+                 sh "sudo docker push $registryCredential/$registry:$tag"
                     
                 }
             }
