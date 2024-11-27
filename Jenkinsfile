@@ -23,7 +23,7 @@ pipeline {
                     sh '''
                        
                         sudo python3 -m venv $VIRTUAL_ENV
-                        . '$VIRTUAL_ENV/bin/activate'
+                        . /var/lib/jenkins/pytest_env/bin/activate
                         sudo /var/lib/jenkins/pytest_env/bin/pip install pytest
 
                         
@@ -37,7 +37,7 @@ pipeline {
                     script {
                     // Activate the virtual environment and run pytest
                     sh '''
-                        . $VIRTUAL_ENV/bin/activate  # Use dot (.) again
+                        . /var/lib/jenkins/pytest_env/bin/activate  # Use dot (.) again
                         sudo pytest testRoutes.py
                     '''
                     }
