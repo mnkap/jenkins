@@ -1,7 +1,6 @@
-
 pipeline {
     environment {
-        registry = "mnkap/python-jenkins" //To push an image to Docker Hub, you must first name your local image using your Docker Hub username and the repository name that you created through Docker Hub on the web.
+        registry = "python-jenkins" //To push an image to Docker Hub, you must first name your local image using your Docker Hub username and the repository name that you created through Docker Hub on the web.
         registryCredential = 'gbt1'
         tag = 'latest'
         githubCredential = 'mnkap'
