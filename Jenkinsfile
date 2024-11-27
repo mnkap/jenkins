@@ -51,7 +51,7 @@ pipeline {
           script {
                     def img = "${registry}"
                     echo "Building Docker image: ${img}"
-                    sh "sudo docker build -t ${img} -f ${dockerfile}"
+                    sh "sudo docker build -t ${img} -f ${dockerfile} ."
                 }
             }
         }
