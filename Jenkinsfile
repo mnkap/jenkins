@@ -1,8 +1,9 @@
 pipeline {
     environment {
-        registry = "python-jenkins" //To push an image to Docker Hub, you must first name your local image using your Docker Hub username and the repository name that you created through Docker Hub on the web.
         registryCredential = 'gbt1'
+        registry = "${registryCredential}/python-jenkins" 
         tag = 'latest'
+        img = "${registry}:${tag}"
         githubCredential = 'mnkap'
         VIRTUAL_ENV = '/var/lib/jenkins/pytest_env'
         dockerfile = 'Dockerfile'
@@ -49,9 +50,8 @@ pipeline {
         stage('Build Image') {
             steps {
           script {
-                    def img = "${registry}"
                     echo "Building Docker image: ${img}"
-                    sh "sudo docker build -t ${img}:${tag} -f ${dockerfile} ."
+                    dockerImage = docker.build(img, "-f ${dockerfile} .")
                 }
             }
         }
