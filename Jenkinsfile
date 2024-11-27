@@ -53,10 +53,10 @@ pipeline {
 
         stage('Build Image') {
             steps {
-                script {
-                    img = registry + ":${env.BUILD_ID}"
-                    println ("${img}")
-                    dockerImage = sudo docker.build("${img}")
+          script {
+                    def img = "${registry}"
+                    echo "Building Docker image: ${img}"
+                    sh "sudo ocker build -t ${img} -f ${dockerfile} ${context}"
                 }
             }
         }
