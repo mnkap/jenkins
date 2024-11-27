@@ -23,8 +23,7 @@ pipeline {
                     sh '''
                        
                         sudo python3 -m venv $VIRTUAL_ENV
-                        sudo source $VIRTUAL_ENV/bin/activate
-                        sudo pip install pytest
+                        sudo bash -c '$VIRTUAL_ENV/bin/activate && sudo pip install pytest'
                         
                     '''
                 }
