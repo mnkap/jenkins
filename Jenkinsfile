@@ -23,7 +23,7 @@ pipeline {
                     sh '''
                        
                         sudo python3 -m venv $VIRTUAL_ENV
-                        sudo source '$VIRTUAL_ENV/bin/activate'
+                        source '$VIRTUAL_ENV/bin/activate'
                         sudo /var/lib/jenkins/pytest_env/bin/pip install pytest
 
                         
