@@ -59,7 +59,8 @@ pipeline {
         stage('Push To DockerHub') {
             steps {
                 
-                 sh "sudo docker push $registry:$tag"
+                 docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                        dockerImage.push()
                     
                 }
             }
