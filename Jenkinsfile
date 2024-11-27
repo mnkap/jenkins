@@ -59,15 +59,15 @@ pipeline {
         stage('Push To DockerHub') {
             steps {
                 
-                 sh 'sudo docker push $registryCredential:$registry'
+                 sh "sudo docker push $registryCredential:$registry"
                     
                 }
             }
-        }
+        
                     
         stage('Deploy') {
            steps {
-                sh label: '', script: "sudo docker run -d --name ${JOB_NAME} -p 5000:5000 ${img}"
+                sh label: '', script "sudo docker run -d --name ${JOB_NAME} -p 5000:5000 ${img}"
           }
         }
 
