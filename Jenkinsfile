@@ -46,8 +46,8 @@ pipeline {
         
         stage ('Clean Up'){
             steps{
-                sh returnStatus: true, script: 'docker stop $(docker ps -a | grep ${JOB_NAME} | awk \'{print $1}\')'
-                sh returnStatus: true, script: 'docker rm ${JOB_NAME}'
+                sh returnStatus: true, script: 'sudo docker stop $(docker ps -a | grep ${JOB_NAME} | awk \'{print $1}\')'
+                sh returnStatus: true, script: 'sudo docker rm ${JOB_NAME}'
             }
         }
 
@@ -64,8 +64,8 @@ pipeline {
         stage('Push To DockerHub') {
             steps {
                 script {
-                    docker.withRegistry( 'https://registry.hub.docker.com ', registryCredential ) {
-                        dockerImage.push()
+                    sudo docker.withRegistry( 'https://registry.hub.docker.com ', registryCredential ) {
+                        sudo dockerImage.push()
                     }
                 }
             }
@@ -73,7 +73,7 @@ pipeline {
                     
         stage('Deploy') {
            steps {
-                sh label: '', script: "docker run -d --name ${JOB_NAME} -p 5000:5000 ${img}"
+                sh label: '', script: "sudo docker run -d --name ${JOB_NAME} -p 5000:5000 ${img}"
           }
         }
 
