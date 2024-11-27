@@ -58,10 +58,9 @@ pipeline {
 
         stage('Push To DockerHub') {
             steps {
-                script {
-                    sudo docker.withRegistry( 'https://index.docker.io/v1/', registryCredential ) {
-                        sudo dockerImage.push()
-                    }
+                
+                 sh 'sudo docker push $registryCredential:$registry'
+                    
                 }
             }
         }
