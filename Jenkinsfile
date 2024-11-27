@@ -51,7 +51,7 @@ pipeline {
             steps {
           script {
                     echo "Building Docker image: ${img}"
-                    dockerImage = docker.build(img, "-f ${dockerfile} .")
+                    sh "sudo docker build -t ${img} -f ${dockerfile} ."
                 }
             }
         }
@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script {
                  docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                        dockerImage.push()
+                        sh "sudo docker push ${img}"
                  }
                 }
             }
