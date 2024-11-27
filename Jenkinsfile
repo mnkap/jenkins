@@ -58,10 +58,10 @@ pipeline {
 
         stage('Push To DockerHub') {
             steps {
-                
+                script {
                  docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                         dockerImage.push()
-                    
+                 }
                 }
             }
         }
