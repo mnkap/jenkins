@@ -21,9 +21,11 @@ pipeline {
             steps {
                 script {
                     sh '''
+                       )
                         python3 -m venv $VIRTUAL_ENV
                         source $VIRTUAL_ENV/bin/activate
                         pip install pytest
+                        )
                     '''
                 }
             }
