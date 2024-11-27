@@ -5,6 +5,7 @@ pipeline {
         registryCredential = 'gbt1'
         githubCredential = 'mnkap'
         VIRTUAL_ENV = '/var/lib/jenkins/pytest_env'
+        dockerfile = 'Dockerfile'
     }
     agent any
     stages {
@@ -50,7 +51,7 @@ pipeline {
           script {
                     def img = "${registry}"
                     echo "Building Docker image: ${img}"
-                    sh "sudo docker build -t ${img} -f ${dockerfile} ${context}"
+                    sh "sudo docker build -t ${img} -f ${dockerfile}"
                 }
             }
         }
