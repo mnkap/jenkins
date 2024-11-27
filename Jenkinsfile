@@ -44,12 +44,6 @@ pipeline {
         }
         }
         
-        stage ('Clean Up'){
-            steps{
-                sh returnStatus: true, script: 'sudo docker stop $(sudo docker ps -a | grep ${JOB_NAME} | awk \'{print $1}\')'
-                sh returnStatus: true, script: 'sudo docker rm ${JOB_NAME}'
-            }
-        }
 
         stage('Build Image') {
             steps {
