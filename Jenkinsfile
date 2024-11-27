@@ -59,7 +59,7 @@ pipeline {
         stage('Push To DockerHub') {
             steps {
                 
-                 sh "sudo docker push $registryCredential/$registry:$tag"
+                 sh "sudo docker push $registry:$tag"
                     
                 }
             }
