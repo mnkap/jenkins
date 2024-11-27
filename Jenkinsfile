@@ -22,9 +22,9 @@ pipeline {
                 script {
                     sh '''
                        
-                        python3 -m venv $VIRTUAL_ENV
-                        source $VIRTUAL_ENV/bin/activate
-                        pip install pytest
+                        sudo python3 -m venv $VIRTUAL_ENV
+                        sudo source $VIRTUAL_ENV/bin/activate
+                        sudo pip install pytest
                         
                     '''
                 }
@@ -37,7 +37,7 @@ pipeline {
                     // Activate the virtual environment and run pytest
                     sh '''
                         . $VIRTUAL_ENV/bin/activate  # Use dot (.) again
-                        pytest testRoutes.py
+                        sudo pytest testRoutes.py
                     '''
                     }
         }
@@ -46,7 +46,6 @@ pipeline {
         stage ('Clean Up'){
             steps{
                 sh returnStatus: true, script: 'docker stop $(docker ps -a | grep ${JOB_NAME} | awk \'{print $1}\')'
-                sh returnStatus: true, script: 'docker rmi $(docker images | grep ${registry} | awk \'{print $3}\') --force' //this will delete all images
                 sh returnStatus: true, script: 'docker rm ${JOB_NAME}'
             }
         }
