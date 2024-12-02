@@ -22,23 +22,23 @@
     2. Добавьте репозиторий Jenkins:
 
     ```bash
-        sudo sh -c 'echo deb http://pkg.jenkins.io/debian/ stable main > /etc/apt/sources.list.d/jenkins.list'
+          sudo sh -c 'echo deb http://pkg.jenkins.io/debian/ stable main > /etc/apt/sources.list.d/jenkins.list'
     ```
     3. Обновите репозитории и установите Jenkins:
 
     ```bash
-       sudo apt update
-       sudo apt install jenkins
+          sudo apt update
+          sudo apt install jenkins
     ```
     4. Запустите Jenkins:
 
     ```bash
-       sudo systemctl start jenkins
+          sudo systemctl start jenkins
     ```
     5. Для запуска Jenkins автоматически при старте системы:
 
     ```bash
-        sudo systemctl enable jenkins
+          sudo systemctl enable jenkins
     ```
 ##  2.3. Доступ к Jenkins
 
@@ -48,7 +48,7 @@
     При первом запуске вам будет предложено ввести пароль для разблокировки Jenkins. Этот пароль можно найти в файле:
     
     ```bash
-        /var/lib/jenkins/secrets/initialAdminPassword
+          /var/lib/jenkins/secrets/initialAdminPassword
     ```
 # 3. Конфигурация Jenkins
 ##  3.1. Установка необходимых плагинов
