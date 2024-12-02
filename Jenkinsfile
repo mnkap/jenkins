@@ -1,10 +1,10 @@
 pipeline {
     environment {
-        registryCredential = 'gbt1'
+        registryCredential = 'dockerhubaccount'
         registry = "${registryCredential}/python-jenkins" 
         tag = 'latest'
         img = "${registry}:${tag}"
-        githubCredential = 'mnkap'
+        githubCredential = 'githubaccount'
         VIRTUAL_ENV = '/var/lib/jenkins/pytest_env'
         dockerfile = 'Dockerfile'
     }
@@ -15,7 +15,7 @@ pipeline {
                 steps {
                 git branch: 'main',
                 credentialsId: githubCredential,
-                url: 'https://github.com/mnkap/jenkins.git'
+                url: 'githubrepositoryurl'
                 }
         }
    
